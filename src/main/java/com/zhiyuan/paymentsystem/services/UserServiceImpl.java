@@ -1,6 +1,5 @@
 package com.zhiyuan.paymentsystem.services;
 
-import com.sun.tools.corba.se.idl.constExpr.Not;
 import com.zhiyuan.paymentsystem.exceptions.NotFoundException;
 import com.zhiyuan.paymentsystem.models.User;
 import com.zhiyuan.paymentsystem.repository.UserRepository;
