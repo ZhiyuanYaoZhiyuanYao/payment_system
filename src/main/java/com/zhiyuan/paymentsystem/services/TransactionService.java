@@ -16,4 +16,6 @@ public interface TransactionService {
     List<Transaction> findTransactionByClientId(Integer clientId);
     List<Transaction> findTransacitionBymanagerId(Integer managerId);
     List<Transaction> findTransactionByContractId(Integer contractId);
+
+    List<Transaction> findAllTransactions();
 }

@@ -14,4 +14,6 @@ public interface ContractService {
     Contract findContractByContractId(Integer contractId);
     List<Contract> findContractByClientId(Integer clientId);
     List<Contract> findContractByManagerId(Integer managerId);
+
+    List<Contract> findAllContracts();
 }

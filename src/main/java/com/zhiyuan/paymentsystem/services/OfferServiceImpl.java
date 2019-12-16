@@ -69,4 +69,9 @@ public class OfferServiceImpl implements OfferService {
     public void deleteOfferByOfferId(Integer offerId) {
         offerRepository.deleteOfferByOfferId(offerId);
     }
+
+    @Override
+    public List<Offer> findAllOffers() {
+        return offerRepository.findAll();
+    }
 }

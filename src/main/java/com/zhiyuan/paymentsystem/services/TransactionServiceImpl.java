@@ -63,4 +63,9 @@ public class TransactionServiceImpl implements TransactionService {
     public List<Transaction> findTransactionByContractId(Integer contractId) {
         return transactionRepository.findTransactionByContractId(contractId);
     }
+
+    @Override
+    public List<Transaction> findAllTransactions() {
+        return transactionRepository.findAll();
+    }
 }

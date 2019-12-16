@@ -107,4 +107,9 @@ public class ContractController {
 
         return contractService.findContractByManagerId(managerId);
     }
+
+    @GetMapping("/contract/all")
+    public List<Contract> getAllContract(){
+        return contractService.findAllContracts();
+    }
 }

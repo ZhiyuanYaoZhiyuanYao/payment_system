@@ -17,4 +17,6 @@ public interface OfferService {
     List<Offer> findOfferByClinetIdAndManagerId(Integer clientId, Integer managerId);
 
     void deleteOfferByOfferId(Integer offerId);
+
+    List<Offer> findAllOffers();
 }

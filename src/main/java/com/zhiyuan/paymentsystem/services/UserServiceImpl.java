@@ -70,4 +70,9 @@ public class UserServiceImpl implements UserService {
         }
         return userOptional.get();
     }
+
+    @Override
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
+    }
 }

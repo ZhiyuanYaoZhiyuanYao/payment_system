@@ -79,4 +79,9 @@ public class PaymentController {
         Payment paymentReference = paymentService.findPaymentByPaymentId(paymentId);
         return paymentService.updatePayment(paymentReference);
     }
+
+    @GetMapping("payment/all")
+    public List<Payment> getAllPayments(){
+        return paymentService.findAllPayments();
+    }
 }

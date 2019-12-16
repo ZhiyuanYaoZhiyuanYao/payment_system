@@ -11,4 +11,6 @@ public interface MessageService {
     Message saveMessage(Message message);
     List<Message> findMessageBySenderId(Integer senderId);
     List<Message> findMessageByRecipientId(Integer recipientId);
+
+    List<Message> findAllMessages();
 }

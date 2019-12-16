@@ -67,4 +67,9 @@ public class MessageController {
 
         return messageService.findMessageByRecipientId(userId);
     }
+
+    @GetMapping("/message/all")
+    public List<Message> getAllMessages(){
+        return messageService.findAllMessages();
+    }
 }

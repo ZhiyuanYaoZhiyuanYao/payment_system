@@ -119,4 +119,9 @@ public class OfferController {
 
         return offerService.findOfferByManagerId(managerId);
     }
+
+    @GetMapping("/offer/all")
+    public List<Offer> getAllOffers(){
+        return offerService.findAllOffers();
+    }
 }

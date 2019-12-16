@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by Zhiyuan Yao
  */
@@ -114,6 +116,11 @@ public class UserAPI{
 
         userReference.setStatus(0);
         return userService.updateUser(userReference);
+    }
+
+    @GetMapping("/api/user/all")
+    public List<User> getAllUsers(){
+        return userService.findAllUsers();
     }
 
 }

@@ -15,4 +15,6 @@ public interface PaymentService {
     List<Payment> findPaymentByPayorId(Integer payorId);
     List<Payment> findPaymentByPayeeId(Integer payeeId);
     List<Payment> findPaymentByPayorIdAndPayeeId(Integer payorId, Integer payeeId);
+
+    List<Payment> findAllPayments();
 }

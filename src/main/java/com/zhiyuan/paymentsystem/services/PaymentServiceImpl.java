@@ -62,4 +62,9 @@ public class PaymentServiceImpl implements PaymentService {
     public List<Payment> findPaymentByPayorIdAndPayeeId(Integer payorId, Integer payeeId) {
         return paymentRepository.findPaymentByPayorIdAndPayeeId(payorId, payeeId);
     }
+
+    @Override
+    public List<Payment> findAllPayments() {
+        return paymentRepository.findAll();
+    }
 }

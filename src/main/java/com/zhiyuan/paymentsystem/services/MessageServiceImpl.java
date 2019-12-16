@@ -33,4 +33,9 @@ public class MessageServiceImpl implements MessageService {
     public List<Message> findMessageByRecipientId(Integer recipientId) {
         return messageRepository.findMessageByRecipientId(recipientId);
     }
+
+    @Override
+    public List<Message> findAllMessages() {
+        return messageRepository.findAll();
+    }
 }

@@ -14,4 +14,6 @@ public interface UserService {
     User findUserByUserId(Integer userId);
     List<User> findUserByFirstNameAndLastName(String firstName, String lastNanme);
     User findUserByEmail(String email);
+
+    List<User> findAllUsers();
 }
