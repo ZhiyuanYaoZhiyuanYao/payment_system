@@ -26,6 +26,7 @@ public class Payment {
     private Integer paymentId;
     private Integer payorId;
     private Integer payeeId;
+    private Double amount;
     private Timestamp paymentTimestamp = new Timestamp(System.currentTimeMillis());
     private Integer status = 0; // 0-pending, 1-finished
 

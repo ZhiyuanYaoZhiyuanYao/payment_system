@@ -6,6 +6,7 @@ import com.zhiyuan.paymentsystem.models.User;
 import com.zhiyuan.paymentsystem.services.PaymentService;
 import com.zhiyuan.paymentsystem.services.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class PaymentController {
 
     @PostMapping("/pay")
     public Payment createPayment(@RequestBody Payment payment){
-        if(payment.getPayorId() == null || payment.getPayeeId() == null){
+        if(payment.getPayorId() == null || payment.getPayeeId() == null || payment.getAmount() <= 0){
             return null;
         }
         Integer payorId = payment.getPayorId();

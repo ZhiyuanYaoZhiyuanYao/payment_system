@@ -5,13 +5,14 @@ import com.zhiyuan.paymentsystem.models.User;
 import com.zhiyuan.paymentsystem.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Zhiyuan Yao
  */
 @Slf4j
-@RestController
+@Controller
 public class UserController {
     private final UserService userService;
 
@@ -19,25 +20,39 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/user/signup")
+    public String getSignupPage(Model model){
+        model.addAttribute("user", new User());
+        return "user-signup";
+    }
+
     @PostMapping("/user/signup")
-    public User createNewUser(@RequestBody User user){
+    public String createNewUser(@ModelAttribute User user){
         if(user.getEmail() == null || user.getPassword() == null){
-            return null;
+            return "user-signup";
         }
 
         try{
             userService.findUserByEmail(user.getEmail());
         }catch (NotFoundException nfe){
-            return userService.saveUser(user);
+            userService.saveUser(user);
+            return "user-login";
         }
 
-        return null;
+        return "user-signup";
+    }
+
+
+    @GetMapping("/user/login")
+    public String getLoginPage(Model model){
+        model.addAttribute("user", new User());
+        return "user-login";
     }
 
     @PostMapping("/user/login")
-    public User loginUser(@RequestBody User user){
+    public String loginUser(@ModelAttribute User user, Model model){
         if(user.getEmail() == null || user.getPassword() == null){
-            return null;
+            return "user-login";
         }
         String email = user.getEmail();
         String password = user.getPassword();
@@ -47,32 +62,34 @@ public class UserController {
         try{
             userFromDB = userService.findUserByEmail(email);
         }catch (NotFoundException nfe){
-            return null;
+            return "user-login";
         }
 
         if(userFromDB != null){
             if(userFromDB.getPassword().equals(password) && userFromDB.getStatus() != 0){
-                return userFromDB;
+                model.addAttribute("user", userFromDB);
+                return "user-dashboard";
             }
         }
-        return null;
+        return "user-login";
     }
 
+    @GetMapping("/user/update/{id}")
+    public String getEditProfilePage(@PathVariable Integer id, Model model){
+        User user = userService.findUserByUserId(id);
+        model.addAttribute("user", user);
+        return "user-detail";
+    }
+
+
     @PostMapping("/user/update")
-    public User updateUser(@RequestBody User user){
-        if(user.getUserId() == null){
-            return null;
-        }
+    public String updateUser(@ModelAttribute User user){
 
-        Integer userId = user.getUserId();
 
-        User userFromDB;
+        String userEmail = user.getEmail().toLowerCase();
 
-        try{
-            userFromDB = userService.findUserByUserId(userId);
-        } catch (NotFoundException nfe){
-            return null;
-        }
+        User userFromDB = userService.findUserByEmail(userEmail);
+
 
         if(userFromDB != null){
             userFromDB.setPhone(user.getPhone());
@@ -84,32 +101,8 @@ public class UserController {
             }
         }
 
-        return userService.updateUser(userFromDB);
-    }
+        userService.saveUser(userFromDB);
 
-    @GetMapping("/user/{userId}")
-    public User getUserProfile(@PathVariable Integer userId){
-        User userReference;
-        try{
-            userReference = userService.findUserByUserId(userId);
-        }catch (NotFoundException nfe){
-            return null;
-        }
-
-        return userReference;
-    }
-
-    @PostMapping("/user/disable/{userId}")
-    public User diableUser(@PathVariable Integer userId){
-        User userReference;
-
-        try{
-            userReference = userService.findUserByUserId(userId);
-        }catch (NotFoundException nfe){
-            return null;
-        }
-
-        userReference.setStatus(0);
-        return userService.updateUser(userReference);
+        return "user-dashboard";
     }
 }
