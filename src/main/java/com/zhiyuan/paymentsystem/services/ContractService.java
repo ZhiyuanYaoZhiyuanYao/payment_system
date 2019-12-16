@@ -16,4 +16,5 @@ public interface ContractService {
     List<Contract> findContractByManagerId(Integer managerId);
 
     List<Contract> findAllContracts();
+
 }
