@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by Zhiyuan Yao
  */
@@ -27,5 +29,10 @@ public class ClientController {
             return null;
         }
         return user;
+    }
+
+    @GetMapping("/clients/all")
+    public List<User> getAllClients(){
+        return userService.findUserByType(2);
     }
 }

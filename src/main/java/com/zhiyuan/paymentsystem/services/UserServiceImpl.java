@@ -75,4 +75,17 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public List<User> findUserByType(Integer type) {
+        List<User> candidates = userRepository.findAll();
+
+        for(User user : candidates){
+            if(user.getType().equals(type)){
+                candidates.remove(user);
+            }
+        }
+
+        return candidates;
+    }
 }
