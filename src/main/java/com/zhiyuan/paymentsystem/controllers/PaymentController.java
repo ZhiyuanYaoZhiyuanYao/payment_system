@@ -69,7 +69,7 @@ public class PaymentController {
         return paymentService.findPaymentByPayeeId(payeeId);
     }
 
-    @GetMapping("/payment/confirm/{paymentId}")
+    @GetMapping("/payments/confirm/{paymentId}")
     public Payment confirmPayment(@PathVariable Integer paymentId){
         try{
             paymentService.findPaymentByPaymentId(paymentId);
@@ -80,7 +80,7 @@ public class PaymentController {
         return paymentService.updatePayment(paymentReference);
     }
 
-    @GetMapping("payment/all")
+    @GetMapping("payments/all")
     public List<Payment> getAllPayments(){
         return paymentService.findAllPayments();
     }
